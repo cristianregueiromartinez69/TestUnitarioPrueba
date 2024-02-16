@@ -1,123 +1,84 @@
-/**
- * Importamos nuestra libreria personal y los paquetes necesarios
- */
 
-import com.dam2024.librerias.Entrada;
-import com.dam2024.librerias.Salida;
+
 
 import javax.swing.*;
 import java.util.*;
 
 /**
- * Clase calculadora para realizar operaciones
+ * clase Calculadora con sus metodos para realizar operaciones
  * @author cristian
  * @version 1.0
  */
 public class Calculadora {
+    /**
+     * constantes de clase de la clase calculadora
+     */
+    public static final int SUMA = 0;
+    public static final int RESTA = 1;
+    public static final int MULTIPLICACION = 2;
+    public static final int DIVISION = 3;
+    public static final int RAIZ_CUADRADA = 4;
+    public static final int RAIZ_CUBICA = 5;
+    static Scanner sc = new Scanner(System.in);
 
     /**
-     * Atributos estáticos y constantes de suma, resta, division y multiplicacion
+     * metodo para realizar operaciones
+     * @param num1 primer numero poara realizar la operacion
+     * @param num2 segundo numero para realizar la operacion
+     * @param operacion la operacion a realizar, si no se elige bien, saldrá null
+     * @return el resultado de la operacion
      */
-    private final static Integer SUMA=1;
-    private final static Integer RESTA=2;
-    private final static Integer MULTIPLICACION=3;
-    private final static Integer DIVISION=4;
+    public static Float operar(Float num1, Float num2, int operacion){
+
+        switch(operacion){
+            case SUMA:
+                return num1 + num2;
+            case RESTA:
+                return num1 - num2;
+            case MULTIPLICACION:
+                return num1 * num2;
+            case DIVISION:
+                return num1 / num2;
+            case RAIZ_CUADRADA:
+                Float opcion;
+                /**
+                 * operacion para preguntar al usuario, con que variable quiere hacer la operacion
+                 */
+                do{
+                    System.out.println("Introduce el 1, si deseas hacer la raiz cuadrada con la variable " + num1);
+                    System.out.println("Introduce el 2, si deseas hacer la raiz cuadrada con la variable " + num2);
+
+                     opcion = (float) sc.nextInt();
+                }while(opcion<1||opcion>2);
+                if(opcion==1){
+                    opcion=num1;
+                }
+                else{
+                    opcion=num2;
+                }
+                return (float) Math.sqrt(opcion);
+            case RAIZ_CUBICA:
+                /**
+                 * operacion para preguntar al usuario, con que variable quiere hacer la operacion
+                 */
+                do{
+                    System.out.println("Introduce el 1, si deseas hacer la raiz cubica con la variable " + num1);
+                    System.out.println("Introduce el 2, si deseas hacer la raiz cubica con la variable " + num2);
+                    opcion = (float) sc.nextInt();
+                }while(opcion<1||opcion>2);
+                if(opcion==1){
+                    opcion=num1;
+                }
+                else{
+                    opcion=num2;
+                }
+                double raizCubica = Math.pow(opcion, (double) 1 / 3);
+                return (float) raizCubica;
 
 
-    /**
-     * metodo que realiza las operaciones
-     * @param mensage mensage para decir que operacion realizar
-     * @param opcion la operacion a realizar
-     * @return el resultado de la operacion realizada
-     */
-    public static float operacion(String mensage, int opcion){
-
-        /**
-         * en esta variable local almacenaremos el resultado de la operacion que luego retornaremos
-         */
-        float resultado=0;
-        /**
-         * segun la opcion escogida, hará una u otra operacion
-         */
-        switch(opcion){
-
-            case 1:
-
-                float num1 = Entrada.entrada_ventana_consola("Introduce el primer número:", Entrada.getCONSOLA());
-                float num2 = Entrada.entrada_ventana_consola("Introduce el segundo número:", Entrada.getCONSOLA());
-                float suma = num1+num2; // Puedes cambiar a cualquier otra operación
-                resultado=suma;
-                Salida.salida_ventana_consola("Resultado", Salida.getCONSOLA());
-
-                break;
-            case 2:
-                num1 = Entrada.entrada_ventana_consola("Introduce el primer número:", Entrada.getCONSOLA());
-                num2 = Entrada.entrada_ventana_consola("Introduce el segundo número:", Entrada.getCONSOLA());
-
-                float resta = num1-num2; // Puedes cambiar a cualquier otra operación
-                resultado=resta;
-                Salida.salida_ventana_consola("Resultado", Salida.getCONSOLA());
-
-                break;
-            case 3:
-                num1 = Entrada.entrada_ventana_consola("Introduce el primer número:", Entrada.getCONSOLA());
-                num2 = Entrada.entrada_ventana_consola("Introduce el segundo número:", Entrada.getCONSOLA());
-
-                float multiplicar = num1*num2; // Puedes cambiar a cualquier otra operación
-                resultado=multiplicar;
-                Salida.salida_ventana_consola("Resultado", Salida.getCONSOLA());
-
-                break;
-            case 4:
-                num1 = Entrada.entrada_ventana_consola("Introduce el primer número:", Entrada.getCONSOLA());
-                num2 = Entrada.entrada_ventana_consola("Introduce el segundo número:", Entrada.getCONSOLA());
-
-                float division= num1/num2; // Puedes cambiar a cualquier otra operación
-                resultado=division;
-                Salida.salida_ventana_consola("Resultado", Salida.getCONSOLA());
-
-                break;
             default:
-                resultado= Float.parseFloat(null);
-                break;
-
-
-
-
-
-
-
-
-
-
+                return null;
         }
-
-
-
-
-
-        return resultado;
-    }
-
-
-    /**
-     * metodos getter de las constantes de clase de las operaciones
-     * @return la operacion a realizar que pondremos en el parametro del metodo operaciones
-     */
-    public static int getSUMA() {
-        return SUMA;
-    }
-
-    public static int getRESTA() {
-        return RESTA;
-    }
-
-    public static int getDIVISION() {
-        return DIVISION;
-    }
-
-    public static int getMULTIPLICACION() {
-        return MULTIPLICACION;
     }
 }
 

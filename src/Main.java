@@ -7,16 +7,11 @@
 public class Main {
 
     public static void main(String[]args){
-
-        /**
-         * try catch para capturar la excepcion en caso de que la opcion no sea la correcta
-         */
-        try {
-            float resultado = Calculadora.operacion("¿Que operacion quieres hacer?", Calculadora.getDIVISION());
-            System.out.println(resultado);
-        }catch(NullPointerException e){
-            System.out.println("Vaya, algo fallo");
-        }
+/**
+ * comprobacion de que las operaciones funcionan correctamente
+ */
+   float resultado = Calculadora.operar(40f, 20f, Calculadora.RAIZ_CUADRADA);
+        System.out.println(resultado);
 
 
     }
